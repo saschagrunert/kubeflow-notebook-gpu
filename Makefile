@@ -1,4 +1,4 @@
-TAG = 1.0.0
+TAG = v1.0.0
 IMAGE = quay.io/saschagrunert/kubeflow-notebook-gpu:$(TAG)
 
 all:
