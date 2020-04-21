@@ -6,6 +6,8 @@ ENV HOME /root
 ENV NB_PREFIX /
 ENV PATH $HOME/.local/bin:$PATH
 
+RUN mkdir -p /home/jovyan
+
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
     apt-transport-https \
@@ -94,4 +96,4 @@ RUN pip3 --no-cache-dir install \
 # Configure container startup
 EXPOSE 8888
 ENTRYPOINT ["tini", "--"]
-CMD ["sh","-c", "jupyter notebook --notebook-dir=/root --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]
+CMD ["sh","-c", "jupyter notebook --notebook-dir=/home/jovyan --ip=0.0.0.0 --no-browser --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=${NB_PREFIX}"]
